@@ -1,0 +1,80 @@
+{% extends 'crud/base.html' %}
+{% block body %}
+<form class="form-inline"  action="create" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+
+	<div class="row">
+	<div class="col-md-6">
+            <label for="Description">Description</label>
+	</div>
+	<div class="col-md-6">
+            <input type="text" name="Description"  class="form-control" required="required"/>
+	</div>
+        </div><br />
+
+	<div class="row">
+	<div class="col-md-6">
+            <label for="Lattitude">Lattitude</label>
+	</div>
+	<div class="col-md-6">
+            <input type="text" name="Lattitude"  class="form-control"  required="required"/>
+	</div>
+       </div><br />
+
+	<div class="row">
+	<div class="col-md-6">
+            <label for="Longitude">Longitude</label>
+	</div>
+	<div class="col-md-6">
+            <input type="text" name="Longitude"  class="form-control"  required="required"/>
+	</div>
+       </div><br />
+
+	<div class="row">
+	<div class="col-md-6">
+            <label for="Elevation">Elevation</label>
+	</div>
+	<div class="col-md-6">
+            <input type="text" name="Elevation"  class="form-control"  required="required"/>
+	</div>
+       </div><br />
+
+	<div class="row">
+	<div class="col-md-6">
+            <label for="CreatedDate">Date</label>
+	</div>
+	<div class="col-md-6">
+            <input type="text" name="CreatedDate"  class="form-control"  required="required"/>
+	</div>
+                </div><br />
+
+        <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> ADD</button>
+    </div>
+</form>
+<br />
+<table class="table table-bordered">
+    <thead class="alert-warning">
+        <tr>
+            <th>Description</th>
+            <th>Lattitude</th>
+	    <th>Longitude</th>
+	   <th>Elevation</th>
+	   <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.Description }}</td>
+            <td>{{ member.Lattitude }}</td>
+	    <td>{{ member.Longitude }}</td>
+            <td>{{ member.Elevation }}</td>
+            <td>{{ member.CreatedDate }}</td>
+            <td><center><a class="btn btn-sm btn-warning" href="edit/{{ member.id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a class="btn btn-sm btn-danger" href="delete/{{ member.id }}"><span class="glyphicon glyphicon-trash"></span> Delete</a></center></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
